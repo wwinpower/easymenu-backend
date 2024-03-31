@@ -3,15 +3,23 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {connect} = require("mongoose");
 
-const index = express();
+const app = express();
 
-index.use(bodyParser.urlencoded({
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*'); // Разрешить доступ с любого домена
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Разрешить методы запросов
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Разрешить заголовки запросов
+    next();
+});
+
+
+app.use(bodyParser.urlencoded({
     extended: true
 }))
 
-index.use(bodyParser.json());
+app.use(bodyParser.json());
 
-require('./app/routes/product.route.js')(index);
+require('./app/routes/product.route.js')(app);
 
 // index.get("/", (req, res) => res.send("Express on Vercel"));
 
@@ -21,7 +29,7 @@ async function start() {
     // await connect(`${process.env.MONGO_URL}`, { useNewUrlParser: true }).then(() => {
     //     console.log("Успешно подключился к базе данных");
 
-        index.listen(PORT, () => {
+    app.listen(PORT, () => {
             console.log("Сервер прослушивает порт 3000");
         });
 
