@@ -20,7 +20,7 @@ index.get("/", (req, res) => res.send("Express on Vercel"));
 const PORT = process.env.PORT || 8080;
 
 async function start() {
-    await connect(`${process.env.MONGO_URL}`).then(() => {
+    await connect(`${process.env.MONGO_URL}`, { useUnifiedTopology: true }).then(() => {
         console.log("Успешно подключился к базе данных");
 
         index.listen(PORT, () => {
