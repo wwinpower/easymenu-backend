@@ -15,12 +15,7 @@ index.use(morgan('dev'));
 
 require('./app/routes/product.route.js')(index);
 
-app.use("/", (req, res)=>{
-    return res.status(200).json({
-        title: "Express Testing",
-        message: "The app is working properly!",
-    });
-});
+index.get("/", (req, res) => res.send("Express on Vercel"));
 
 const PORT = process.env.PORT || 8080;
 
