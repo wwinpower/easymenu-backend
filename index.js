@@ -13,7 +13,7 @@ index.use(bodyParser.json());
 
 require('./app/routes/product.route.js')(index);
 
-index.get("/", (req, res) => res.send("Express on Vercel"));
+// index.get("/", (req, res) => res.send("Express on Vercel"));
 
 const PORT = process.env.PORT || 8080;
 
