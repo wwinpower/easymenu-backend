@@ -11,7 +11,7 @@ index.use(bodyParser.urlencoded({
 }))
 
 index.use(bodyParser.json())
-index.use(morgan('dev'));
+// index.use(morgan('dev'));
 
 require('./app/routes/product.route.js')(index);
 
