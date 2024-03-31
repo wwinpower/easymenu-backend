@@ -1,5 +1,5 @@
 const Course = require('../models/product.model.js');
-const data = require('./json/products.json');
+const data = require('./products.json');
 
 exports.create = (req, res) => {
     if (!req.body.title) {
@@ -24,39 +24,15 @@ exports.create = (req, res) => {
 };
 
 exports.findByCategoryId = async (req, res) => {
-
-    const {categoryId} = req.params;
-    console.log(categoryId)
-
-    // const product = data.filter(item => item.categoryId === categoryId);
-
-    await res.send(data);
-
-    // Course.find()
-    //     .then(courses => {
-    //         res.send(data);
-    //     }).catch(err => {
-    //     res.status(500).send({
-    //         message: err.message || "При получении данных произошла ошибка."
-    //     });
-    // });
+    const { categoryId } = req.params;
+    console.log(data)
+    res.send(data.filter(item => item.categoryId === categoryId));
 };
 
 exports.findById = (req, res) => {
-    const {productId} = req.params;
-
+    const { productId } = req.params;
     const product = data.find(item => item.id === productId);
-
     res.send(product);
-
-    // Course.find({id: req.body.id})
-    //     .then(courses => {
-    //         res.send(courses);
-    //     }).catch(err => {
-    //     res.status(500).send({
-    //         message: err.message || "При получении данных произошла ошибка."
-    //     });
-    // });
 };
 
 exports.delete = (req, res) => {
