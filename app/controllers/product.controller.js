@@ -26,7 +26,7 @@ exports.create = (req, res) => {
 exports.findByCategoryId = async (req, res) => {
 
     const {categoryId} = req.params;
-    console.log()
+    console.log(categoryId)
 
     // const product = data.filter(item => item.categoryId === categoryId);
 
