@@ -4,16 +4,16 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const {connect} = require("mongoose");
 
-const app = express();
+const index = express();
 
-app.use(bodyParser.urlencoded({
+index.use(bodyParser.urlencoded({
     extended: true
 }))
 
-app.use(bodyParser.json())
-app.use(morgan('dev'));
+index.use(bodyParser.json())
+index.use(morgan('dev'));
 
-require('./app/routes/product.route.js')(app);
+require('./app/routes/product.route.js')(index);
 
 
 const PORT = process.env.PORT || 8080;
@@ -22,7 +22,7 @@ async function start() {
     await connect(`${process.env.MONGO_URL}`).then(() => {
         console.log("Успешно подключился к базе данных");
 
-        app.listen(PORT, () => {
+        index.listen(PORT, () => {
             console.log("Сервер прослушивает порт 3000");
         });
 
