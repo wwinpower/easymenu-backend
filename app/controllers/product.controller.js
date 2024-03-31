@@ -26,10 +26,11 @@ exports.create = (req, res) => {
 exports.findByCategoryId = async (req, res) => {
 
     const {categoryId} = req.params;
+    console.log()
 
-    const product = data.filter(item => item.categoryId === categoryId);
+    // const product = data.filter(item => item.categoryId === categoryId);
 
-    await res.send(product);
+    await res.send(data);
 
     // Course.find()
     //     .then(courses => {
